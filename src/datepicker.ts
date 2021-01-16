@@ -623,7 +623,7 @@ export class Datepicker extends LitElement {
       const minTime = +this._min;
       const maxTime = +this._max;
 
-      if (getDateRange(minTime, maxTime) > 864e5) {
+      if (getDateRange(minTime, maxTime) >= 864e5) {
         const focusedDateTime = +this._focusedDate;
 
         let newValue = focusedDateTime;
