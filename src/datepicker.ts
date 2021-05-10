@@ -11,12 +11,11 @@ import {
   LitElement,
   property,
   query,
-  TemplateResult,
+  TemplateResult
 } from 'lit-element';
 import { cache } from 'lit-html/directives/cache.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { repeat } from 'lit-html/directives/repeat.js';
-
 import type { WeekNumberType } from 'nodemod/dist/calendar/calendar_typing.js';
 import { toUTCDate } from 'nodemod/dist/calendar/helpers/to-utc-date.js';
 import { iconChevronLeft, iconChevronRight } from './app-datepicker-icons.js';
@@ -28,7 +27,7 @@ import type {
   Formatters,
   HTMLElementPart,
   MonthUpdateType,
-  StartView,
+  StartView
 } from './custom_typings.js';
 import { KEY_CODES_MAP } from './custom_typings.js';
 import { animateElement } from './helpers/animate-element.js';
@@ -632,6 +631,9 @@ export class Datepicker extends LitElement {
         if (focusedDateTime > maxTime) newValue = maxTime;
 
         this.value = toFormattedDateString(new Date(newValue));
+      } else if (getDateRange(minTime, maxTime) === 0) {
+        this._focusedDate = new Date(minTime);
+        this.value = toFormattedDateString(new Date(minTime));
       }
     }
 
